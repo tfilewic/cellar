@@ -12,4 +12,4 @@ Building a backend with Node.js, Express, SQLite, and Python scraping to manage 
 ## Technologies Used
 - **Node.js + Express** – backend runtime and web framework for the REST API  
 - **SQLite** – database
-- **Python (BeautifulSoup or Playwright)** – scraper to fetch external wine ratings  
+- **Python (BeautifulSoup)** – scraper to fetch external wine ratings  
