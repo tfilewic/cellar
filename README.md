@@ -1,6 +1,6 @@
 # Wine Cellar Manager
 
-Building a backend with Node.js, Express, SQLite, and Python scraping to manage personal wine inventory.
+Building a backend with C# (ASP.NET Core), MySQL, and Python scraping to manage personal wine inventory.
 
 ## Project will:
 - [ ] Create REST API to manage wine entries  
@@ -10,6 +10,6 @@ Building a backend with Node.js, Express, SQLite, and Python scraping to manage 
 - [ ] Export data to CSV  
 
 ## Technologies Used
-- **Node.js + Express** – backend runtime and web framework for the REST API  
-- **MySQL** – database
+- **ASP.NET Core (C#)** – backend REST API
+- **MySQL** – relational database
 - **Python (BeautifulSoup)** – scraper to fetch external wine ratings  
