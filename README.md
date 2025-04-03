@@ -4,12 +4,12 @@ Building a backend with Node.js, Express, SQLite, and Python scraping to manage 
 
 ## Project will:
 - [ ] Create REST API to manage wine entries  
-- [ ] Store wines in SQLite with quantity, location, vintage, notes, rating  
+- [ ] Store wines in a MySQL database with fields for quantity, location, vintage, notes, rating  
 - [ ] Use a Python scraper to find tasting notes and rating
 - [ ] Support listing, updating, and deleting entries   
 - [ ] Export data to CSV  
 
 ## Technologies Used
 - **Node.js + Express** – backend runtime and web framework for the REST API  
-- **SQLite** – database
+- **MySQL** – database
 - **Python (BeautifulSoup)** – scraper to fetch external wine ratings  
