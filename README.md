@@ -5,6 +5,7 @@ Building a Python-based backend using MySQL and web scraping to manage personal 
 ## Project will:
 - [ ] Create REST API to manage wine entries  
 - [ ] Store wines in a MySQL database with fields for quantity, location, vintage, notes, rating  
+- [ ] Use SQLite for local development, switch to MySQL in production
 - [ ] Use a Python scraper to find tasting notes and rating
 - [ ] Support listing, updating, and deleting entries   
 - [ ] Implement CSV import and export functionality
