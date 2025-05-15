@@ -17,3 +17,9 @@ Building a Python-based backend using MySQL and web scraping to manage personal 
 - **SQLAlchemy** – ORM for interacting with MySQL
 - **BeautifulSoup** – scraper to fetch external wine ratings  
 - **Matplotlib** – data visualization
+
+<br><br>
+***
+
+### Schema
+![schema](https://github.com/user-attachments/assets/b8b38345-89ce-4c9c-94d8-cdca99119e14)
