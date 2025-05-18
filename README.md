@@ -3,13 +3,14 @@
 Building a Python-based backend using MySQL and web scraping to manage personal wine inventory.
 
 ## Project will:
-- [ ] Create REST API to manage wine entries  
-- [ ] Store wines in a MySQL database with fields for quantity, location, vintage, notes, rating  
+- [X] Create REST API to manage wine entries  
+- [X] Store wines in a relational database with fields including quantity, producer, and rating
 - [ ] Use SQLite for local development, switch to MySQL in production
 - [ ] Use a Python scraper to find tasting notes and rating
-- [ ] Support listing, updating, and deleting entries   
+- [X] Support listing, updating, and deleting entries   
 - [ ] Implement CSV import and export functionality
 - [ ] Provide data visualization for inventory
+- [ ] Containerize the application
 
 ## Technologies Used
 - **Flask** – backend REST API
@@ -17,6 +18,9 @@ Building a Python-based backend using MySQL and web scraping to manage personal 
 - **SQLAlchemy** – ORM for interacting with MySQL
 - **BeautifulSoup** – scraper to fetch external wine ratings  
 - **Matplotlib** – data visualization
+- **Pytest** – unit testing for API and validation
+- **Docker & Docker Compose** – containerized deployment
+
 
 <br><br>
 ***
