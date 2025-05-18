@@ -12,3 +12,46 @@ class Region(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
     country_id = db.Column(db.Integer, db.ForeignKey("countries.id"), nullable=False)
+
+
+@staticmethod
+def validate_name(name: str) -> str:
+    """Validate region name.
+
+    Args:
+        name: Input string to validate.
+
+    Returns:
+        str: Trimmed name.
+
+    Raises:s
+        ValueError: If name is empty or exceeds 100 characters.
+    """
+
+    if not name or not name.strip():
+        raise ValueError("Region name is required")
+    if len(name) > 100:
+        raise ValueError(f"Region name '{name}' too long")
+    return name
+
+@staticmethod
+def validate_country_id(country_id) -> int:
+    """Validate country ID.
+
+    Args:
+        country_id: Input value to validate.
+
+    Returns:
+        int: Validated country ID.
+
+    Raises:
+        ValueError: If country_id is not a positive integer.
+    """
+
+    try:
+        country_id = int(country_id)
+    except (TypeError, ValueError):
+        raise ValueError(f"Invalid country_id: {country_id}.  Must be integer.")
+    if not 0 < country_id:
+        raise ValueError(f"Invalid country_id: {country_id}. Must be greater than 0.") 
+    return country_id
