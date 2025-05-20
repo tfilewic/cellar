@@ -11,7 +11,7 @@ from models.producer import Producer
 from models.region import Region
 from models.country import Country 
 from models import db
-from scraper import scrape_rating
+from scraper.scraper import scrape_rating
 
 
 #GET /wines
