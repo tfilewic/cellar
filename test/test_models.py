@@ -58,15 +58,35 @@ def test_region_validate_country_id_not_positive(id) :
 def test_region_validate_country_id_valid(id, expected) :
     assert Region.validate_country_id(id) == expected
 
+#Producer
+@pytest.mark.parametrize("name", [None, "", "     "])
+def test_producer_validate_name_empty(name) :
+    with pytest.raises(ValueError, match="Producer name is required"):
+        Producer.validate_name(name)
 
-def test_producer_validate_name() :
-    pass
+@pytest.mark.parametrize("name", ["z" * 101])
+def test_producer_validate_name_too_long(name) :
+    with pytest.raises(ValueError, match=f"Producer name '{name}' too long"):
+         Producer.validate_name(name)
 
-def test_producer_validate_region_id() :
-    pass
+@pytest.mark.parametrize("name, expected", [("z" * 100, "z" * 100), 
+    ("  Domaine de la Romanée-Conti ", "Domaine de la Romanée-Conti"), ("Ridge", "Ridge")])
+def test_producer_validate_name_valid(name, expected) :
+    assert Producer.validate_name(name) == expected
 
-def test_producer_validate_name() :
-    pass
+@pytest.mark.parametrize("id", [None, [7], object()])
+def test_producer_validate_region_id_not_int(id) :
+    with pytest.raises(ValueError, match=re.escape(f"Invalid region_id: {id}.  Must be integer.")):
+        Producer.validate_region_id(id)
+
+@pytest.mark.parametrize("id", ["0", 0, -2341])
+def test_producer_validate_region_id_not_positive(id) :
+    with pytest.raises(ValueError, match=re.escape(f"Invalid region_id: {id}. Must be greater than 0.")):
+        Producer.validate_region_id(id)
+
+@pytest.mark.parametrize("id,expected", [(1, 1), ("1", 1), (2341, 2341)])
+def test_producer_validate_region_id_valid(id, expected) :
+    assert Producer.validate_region_id(id) == expected
 
 def test_wine_validate_quantity() :
     pass
