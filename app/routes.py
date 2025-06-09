@@ -46,7 +46,8 @@ def get_wine(id):
         id (int): Wine ID.
 
     Returns:
-        JSON response with wine data or 404 if not found.
+        JSON response with wine data and HTTP 200
+        HTTP 404 if not found
     """
 
     wine = Wine.query.get_or_404(id)
@@ -73,7 +74,7 @@ def add_wine():
 
     Returns:
         JSON response with new wine ID and HTTP 201 on success.
-        400 or 409 on error.
+        HTTP 400 or 409 on error.
     """
 
     #get request
@@ -143,7 +144,7 @@ def update_quantity():
 
     Returns:
         JSON response with confirmation message and HTTP 200.
-        400 or 404 on error.
+        HTTP 400 or 404 on error.
     """
 
     #check for id
@@ -175,7 +176,7 @@ def remove_wine(id):
 
     Returns:
         JSON response confirming deletion and HTTP 200.
-        404 if not found.
+        HTTP 404 if not found.
     """
 
     wine = Wine.query.get_or_404(id)
@@ -209,7 +210,8 @@ def get_producer(id):
         id (int): Producer ID.
 
     Returns:
-        JSON response with producer data or 404 if not found.
+        JSON response with producer data and HTTP 200.
+        HTTP 404 if not found.
     """
 
     producer = Producer.query.get_or_404(id)
@@ -246,7 +248,8 @@ def get_region(id):
         id (int): Region ID.
 
     Returns:
-        JSON response with region data or 404 if not found.
+        JSON response with region data and HTTP 200.
+        HTTP 404 if not found.
     """
 
     region = Region.query.get_or_404(id)
@@ -282,7 +285,8 @@ def get_country(id):
         id (int): Country ID.
 
     Returns:
-        JSON response with country data or 404 if not found.
+        JSON response with country data and HTTP 200.
+        HTTP 404 if not found.
     """
 
     country = Country.query.get_or_404(id)
