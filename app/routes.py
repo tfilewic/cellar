@@ -87,8 +87,8 @@ def add_wine():
         producer_id = Wine.validate_producer_id(data.get("producer_id"))
 
         #get producer name
-        producer_name = Producer.query.get(producer_id)
-        if not producer_name:
+        producer = Producer.query.get(producer_id)
+        if not producer:
             raise ValueError("Producer not found")
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
@@ -116,7 +116,7 @@ def add_wine():
         wine_type = data.get("type")
         if wine_type is not None:
             wine_type = Wine.validate_type(wine_type)
-        rating = scrape_rating(name, vintage, producer_name)
+        rating = scrape_rating(name, vintage, producer.name)
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
     

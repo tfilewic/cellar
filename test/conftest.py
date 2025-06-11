@@ -21,6 +21,7 @@ def client():
         with app.app_context():
             db.create_all() #create tables
             yield client    #run tests with client
+            db.session.remove() #close sessions to release db
             db.drop_all()   #clean up db
 
 
@@ -43,3 +44,20 @@ def data(client):
     db.session.commit()
 
     return {"country": c, "region": r, "producer": p, "wine": w}
+
+
+@pytest.fixture
+def data2(client):
+    c = Country(name="Canada")
+    db.session.add(c)
+    db.session.flush()
+
+    r = Region(name="Okanagan Valley", country_id=c.id)
+    db.session.add(r)
+    db.session.flush()
+
+    p = Producer(name="Painted Rock", region_id=r.id)
+    db.session.add(p)
+    db.session.flush()
+
+    return None
