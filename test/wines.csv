@@ -1,0 +1,87 @@
+name,vintage,varietal,color,type,rating,quantity,producer,region,country
+Pinot Noir Reserve,2016,Pinot Noir,Red,Still,98,59,Huff-Flynn,Priorat,Spain
+Syrah Rosé Reserve,1994,Syrah Rosé,Rosé,Sparkling,97,19,Ward Inc,Napa Valley,USA
+Viognier Reserve,2011,Viognier,White,Sparkling,93,22,Martinez-Peters,Mosel,Germany
+Zinfandel Reserve,2019,Zinfandel,Red,Still,99,22,"Mitchell, Russell and Cooper",Tuscany,Italy
+Pinot Noir Reserve,1999,Pinot Noir,Red,Still,89,35,Cisneros-Walker,Lombardy,Italy
+Viognier Reserve,2003,Viognier,White,Still,100,10,Gardner Ltd,Tuscany,Italy
+Pinot Noir Rosé Reserve,2008,Pinot Noir Rosé,Rosé,Still,83,51,Carter-James,Napa Valley,USA
+Syrah Reserve,2006,Syrah,Red,Still,86,100,Smith Inc,Mosel,Germany
+Syrah Rosé Reserve,2016,Syrah Rosé,Rosé,Sparkling,86,83,"Barnes, Lee and Castillo",Baden,Germany
+Pinot Grigio Reserve,2022,Pinot Grigio,White,Still,83,96,"Clark, Johnson and Kirby",Tuscany,Italy
+Chardonnay Reserve,2015,Chardonnay,White,Still,96,89,Cisneros-Walker,Lombardy,Italy
+Sauvignon Blanc Reserve,1990,Sauvignon Blanc,White,Still,100,4,"Daniel, Washington and Rodriguez",Baden,Germany
+Chardonnay Reserve,1998,Chardonnay,White,Still,87,37,Ward Inc,Napa Valley,USA
+Sauvignon Blanc Reserve,2008,Sauvignon Blanc,White,Still,98,64,Collins-Wells,Rioja,Spain
+Riesling Reserve,2008,Riesling,White,Still,92,93,"Singh, Compton and Adkins",Pfalz,Germany
+Pinot Noir Rosé Reserve,2016,Pinot Noir Rosé,Rosé,Still,89,44,Anderson and Sons,Sicily,Italy
+Syrah Reserve,1995,Syrah,Red,Still,86,17,Martinez-Peters,Mosel,Germany
+Pinot Grigio Reserve,2020,Pinot Grigio,White,Sparkling,86,94,Pham PLC,Rias Baixas,Spain
+Merlot Reserve,1992,Merlot,Red,Still,92,79,House LLC,Rheingau,Germany
+Syrah Reserve,2010,Syrah,Red,Still,100,73,Ward Inc,Napa Valley,USA
+Syrah Rosé Reserve,1995,Syrah Rosé,Rosé,Sparkling,97,39,Yoder PLC,Loire Valley,France
+Sauvignon Blanc Reserve,2007,Sauvignon Blanc,White,Sparkling,88,54,Cisneros-Walker,Lombardy,Italy
+Pinot Noir Rosé Reserve,2005,Pinot Noir Rosé,Rosé,Still,93,54,Ward Inc,Napa Valley,USA
+Chardonnay Reserve,2011,Chardonnay,White,Sparkling,89,23,"Barnes, Lee and Castillo",Baden,Germany
+Cabernet Sauvignon Reserve,1994,Cabernet Sauvignon,Red,Still,92,94,"Mitchell, Russell and Cooper",Tuscany,Italy
+Riesling Reserve,2009,Riesling,White,Sparkling,87,30,Reyes-Johnson,Rioja,Spain
+Merlot Reserve,2018,Merlot,Red,Still,81,91,"Mitchell, Russell and Cooper",Tuscany,Italy
+Syrah Rosé Reserve,2022,Syrah Rosé,Rosé,Sparkling,87,2,Johnson-Jones,Loire Valley,France
+Pinot Grigio Reserve,2015,Pinot Grigio,White,Still,99,75,"Barnes, Lee and Castillo",Baden,Germany
+Cabernet Sauvignon Reserve,2011,Cabernet Sauvignon,Red,Still,89,60,Ward Inc,Napa Valley,USA
+Merlot Reserve,2020,Merlot,Red,Still,86,96,"Singh, Compton and Adkins",Pfalz,Germany
+Syrah Reserve,1997,Syrah,Red,Still,94,77,Potter-Cardenas,Ribera del Duero,Spain
+Sauvignon Blanc Reserve,2002,Sauvignon Blanc,White,Sparkling,99,12,Powell and Sons,Bordeaux,France
+Pinot Grigio Reserve,2006,Pinot Grigio,White,Still,98,78,"Mitchell, Russell and Cooper",Tuscany,Italy
+Riesling Reserve,2003,Riesling,White,Sparkling,98,13,Anderson and Sons,Sicily,Italy
+Merlot Reserve,1995,Merlot,Red,Still,94,8,"Daniel, Washington and Rodriguez",Baden,Germany
+Syrah Rosé Reserve,2011,Syrah Rosé,Rosé,Still,96,79,Powell and Sons,Bordeaux,France
+Syrah Rosé Reserve,2006,Syrah Rosé,Rosé,Sparkling,83,23,Burke-Turner,Sicily,Italy
+Pinot Noir Rosé Reserve,1996,Pinot Noir Rosé,Rosé,Still,88,57,Jenkins-Miller,Rueda,Spain
+Cabernet Sauvignon Reserve,2014,Cabernet Sauvignon,Red,Still,89,72,Cisneros-Walker,Lombardy,Italy
+Grenache Rosé Reserve,2014,Grenache Rosé,Rosé,Still,94,86,Hogan-Baker,Ribera del Duero,Spain
+Pinot Noir Rosé Reserve,2003,Pinot Noir Rosé,Rosé,Sparkling,83,74,Potter-Cardenas,Ribera del Duero,Spain
+Syrah Rosé Reserve,2016,Syrah Rosé,Rosé,Sparkling,80,1,Schroeder-Gardner,Nahe,Germany
+Grenache Rosé Reserve,1991,Grenache Rosé,Rosé,Sparkling,99,39,"Alexander, Delacruz and Rasmussen",Piedmont,Italy
+Pinot Noir Reserve,1998,Pinot Noir,Red,Still,80,23,"Singh, Compton and Adkins",Pfalz,Germany
+Cabernet Sauvignon Reserve,2012,Cabernet Sauvignon,Red,Still,94,68,Pham PLC,Rias Baixas,Spain
+Pinot Noir Reserve,2006,Pinot Noir,Red,Still,80,61,House LLC,Rheingau,Germany
+Syrah Rosé Reserve,1998,Syrah Rosé,Rosé,Still,98,80,"West, Martin and Morales",Mosel,Germany
+Zinfandel Reserve,2014,Zinfandel,Red,Still,97,98,Gardner Ltd,Tuscany,Italy
+Merlot Reserve,2002,Merlot,Red,Still,93,81,Yoder PLC,Loire Valley,France
+Syrah Rosé Reserve,2004,Syrah Rosé,Rosé,Still,85,86,Jenkins-Miller,Rueda,Spain
+Syrah Rosé Reserve,2005,Syrah Rosé,Rosé,Sparkling,97,6,"Alexander, Delacruz and Rasmussen",Piedmont,Italy
+Pinot Noir Reserve,1993,Pinot Noir,Red,Still,91,12,"Daniel, Washington and Rodriguez",Baden,Germany
+Riesling Reserve,2019,Riesling,White,Sparkling,88,100,Burke-Turner,Sicily,Italy
+Pinot Grigio Reserve,1996,Pinot Grigio,White,Sparkling,90,23,Potter-Cardenas,Ribera del Duero,Spain
+Chardonnay Reserve,1998,Chardonnay,White,Sparkling,86,41,"Daniel, Washington and Rodriguez",Baden,Germany
+Merlot Reserve,1999,Merlot,Red,Still,81,58,Collins-Wells,Rioja,Spain
+Grenache Rosé Reserve,2006,Grenache Rosé,Rosé,Sparkling,94,19,Wright Group,Rheingau,Germany
+Riesling Reserve,1996,Riesling,White,Still,87,21,Pham PLC,Rias Baixas,Spain
+Sauvignon Blanc Reserve,2020,Sauvignon Blanc,White,Still,94,71,"Green, Warner and Jimenez",Piedmont,Italy
+Syrah Rosé Reserve,1994,Syrah Rosé,Rosé,Still,87,31,Carter-James,Napa Valley,USA
+Syrah Rosé Reserve,2012,Syrah Rosé,Rosé,Sparkling,100,4,Potter-Cardenas,Ribera del Duero,Spain
+Grenache Rosé Reserve,2023,Grenache Rosé,Rosé,Still,89,19,Burke-Turner,Sicily,Italy
+Zinfandel Reserve,2020,Zinfandel,Red,Still,97,64,"Clark, Johnson and Kirby",Tuscany,Italy
+Pinot Noir Rosé Reserve,2002,Pinot Noir Rosé,Rosé,Still,81,44,Burke-Turner,Sicily,Italy
+Chardonnay Reserve,2003,Chardonnay,White,Sparkling,95,95,Jenkins-Miller,Rueda,Spain
+Grenache Rosé Reserve,2016,Grenache Rosé,Rosé,Sparkling,85,72,Jenkins-Miller,Rueda,Spain
+Pinot Grigio Reserve,2015,Pinot Grigio,White,Sparkling,94,14,Johnson-Jones,Loire Valley,France
+Pinot Noir Rosé Reserve,2005,Pinot Noir Rosé,Rosé,Still,95,88,Allen-Douglas,Champagne,France
+Zinfandel Reserve,2006,Zinfandel,Red,Still,96,76,Johnson-Jones,Loire Valley,France
+Chardonnay Reserve,2000,Chardonnay,White,Still,97,67,Pham PLC,Rias Baixas,Spain
+Pinot Grigio Reserve,2018,Pinot Grigio,White,Sparkling,91,44,Allen-Douglas,Champagne,France
+Sauvignon Blanc Reserve,1997,Sauvignon Blanc,White,Sparkling,95,20,"Mitchell, Russell and Cooper",Tuscany,Italy
+Pinot Noir Rosé Reserve,2000,Pinot Noir Rosé,Rosé,Still,93,81,Martinez-Peters,Mosel,Germany
+Syrah Reserve,2003,Syrah,Red,Still,96,85,Yoder PLC,Loire Valley,France
+Merlot Reserve,1991,Merlot,Red,Still,98,15,Cisneros-Walker,Lombardy,Italy
+Chardonnay Reserve,2019,Chardonnay,White,Sparkling,95,95,Jenkins-Miller,Rueda,Spain
+Syrah Rosé Reserve,1998,Syrah Rosé,Rosé,Sparkling,80,1,Schroeder-Gardner,Nahe,Germany
+Merlot Reserve,1993,Merlot,Red,Still,94,8,"Daniel, Washington and Rodriguez",Baden,Germany
+Syrah Reserve,2008,Syrah,Red,Still,86,17,Martinez-Peters,Mosel,Germany
+Viognier Reserve,1999,Viognier,White,Sparkling,93,22,Martinez-Peters,Mosel,Germany
+Sauvignon Blanc Reserve,2004,Sauvignon Blanc,White,Still,98,64,Collins-Wells,Rioja,Spain
+Syrah Reserve,2010,Syrah,Red,Still,94,77,Potter-Cardenas,Ribera del Duero,Spain
+Grenache Rosé Reserve,2000,Grenache Rosé,Rosé,Still,89,19,Burke-Turner,Sicily,Italy
+Syrah Reserve,2000,Syrah,Red,Still,86,17,Martinez-Peters,Mosel,Germany
+Pinot Grigio Reserve,2001,Pinot Grigio,White,Sparkling,90,23,Potter-Cardenas,Ribera del Duero,Spain

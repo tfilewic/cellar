@@ -6,6 +6,9 @@ Unit tests API endpoints.
 
 import pytest
 from app import app
+from io import BytesIO
+import pandas as pd
+
 
 
 def test_get_wines_200(client, data):
@@ -124,3 +127,31 @@ def test_get_country_200(client, data):
 def test_get_country_404(client, data):
     response = client.get("/countries/2")
     assert response.status_code == 404
+
+
+def test_csv_upload_200(client, csv_file):
+    data = {"file": (csv_file, "test.csv")}
+    response = client.post("/csv", data=data, content_type="multipart/form-data")
+    assert response.status_code == 200
+
+def test_csv_upload_400(client, csv_file):
+    data = {"file": (csv_file, "test.csz")}
+    response = client.post("/csv", data=data, content_type="multipart/form-data")
+    assert response.status_code == 400
+
+
+def test_csv_download_200(client, csv_file, uploaded_csv):
+   
+    response = client.get("/csv")
+    assert response.status_code == 200
+
+    '''
+    with open("test/output.csv", "w", encoding="utf-8") as f:
+        f.write(response.data.decode("utf-8"))
+    '''
+
+    df_uploaded = pd.read_csv("test/wines.csv")
+    df_downloaded = pd.read_csv(BytesIO(response.data))
+    assert df_uploaded.equals(df_downloaded)
+
+

@@ -311,7 +311,6 @@ def download_csv():
     """
 
     wines = (db.session.query(
-        Wine.id,
         Wine.name,
         Wine.vintage,
         Wine.varietal,
@@ -326,6 +325,7 @@ def download_csv():
     .join(Producer, Wine.producer_id == Producer.id)
     .join(Region, Producer.region_id == Region.id)
     .join(Country, Region.country_id == Country.id)
+    .order_by(Wine.id)
     .all())
 
 

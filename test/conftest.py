@@ -60,4 +60,13 @@ def data2(client):
     db.session.add(p)
     db.session.flush()
 
-    return None
+
+@pytest.fixture
+def csv_file():
+    with open("test/wines.csv", "rb") as file:
+        yield file
+
+@pytest.fixture
+def uploaded_csv(client, csv_file):
+    data = {"file": (csv_file, "test.csv")}
+    client.post("/csv", data=data, content_type="multipart/form-data")

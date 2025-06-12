@@ -10,7 +10,7 @@ from models.country import Country
 from models import db
 
 
-CSV_HEADERS = ["id", "name", "vintage", "varietal", "color", "type", "rating", "quantity",
+CSV_HEADERS = ["name", "vintage", "varietal", "color", "type", "rating", "quantity",
              "producer", "region", "country"]
 
 
@@ -41,10 +41,11 @@ def insert_countries(rows) -> dict:
     country_map = {}
     countries = {r["country"].strip() for r in rows}
     for name in countries:
-        c = Country(name=name)
-        db.session.add(c)
-        db.session.flush()
-        country_map[name] = c.id
+        if name not in country_map:
+            c = Country(name=name)
+            db.session.add(c)
+            db.session.flush()
+            country_map[name] = c.id
     return country_map
 
 
@@ -62,10 +63,11 @@ def insert_regions(rows, country_map) -> dict:
     region_map = {}
     regions = {(r["region"].strip(), r["country"].strip()) for r in rows}
     for region_name, country_name in regions:
-        r = Region(name=region_name, country_id=country_map[country_name])
-        db.session.add(r)
-        db.session.flush()
-        region_map[region_name] = r.id
+        if region_name not in region_map:
+            r = Region(name=region_name, country_id=country_map[country_name])
+            db.session.add(r)
+            db.session.flush()
+            region_map[region_name] = r.id
     return region_map
 
 
@@ -83,10 +85,11 @@ def insert_producers(rows, region_map) -> dict:
     producer_map = {}
     producers = {(r["producer"].strip(), r["region"].strip()) for r in rows}
     for producer_name, region_name in producers:
-        p = Producer(name=producer_name, region_id=region_map[region_name])
-        db.session.add(p)
-        db.session.flush()
-        producer_map[producer_name] = p.id
+        if producer_name not in producer_map:            
+            p = Producer(name=producer_name, region_id=region_map[region_name])
+            db.session.add(p)
+            db.session.flush()
+            producer_map[producer_name] = p.id
     return producer_map
 
 def insert_wines(rows, producer_map):
