@@ -21,7 +21,7 @@ class Wine(db.Model):
     type = db.Column(db.String(100))    #ex: "Still", "Sparkling", "Dessert", "Fortified"
     producer_id = db.Column(db.Integer, db.ForeignKey("producers.id"), nullable=False)
     rating = db.Column(db.Integer)  #scraped upon insert/update
-
+    producer = db.relationship("Producer", backref="wines") #link to Producer
 
     @staticmethod
     def validate_quantity(quantity) -> int:

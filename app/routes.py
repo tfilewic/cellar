@@ -4,7 +4,7 @@ REST API routes.
 Defines endpoints for wines, producers, regions, and countries.
 """
 
-from flask import request, jsonify
+from flask import request, jsonify, Response
 from app import app
 from models.wine import Wine
 from models.producer import Producer
@@ -12,6 +12,10 @@ from models.region import Region
 from models.country import Country 
 from models import db
 from scraper.scraper import scrape_rating
+import pandas as pd
+import csv
+import csv_io.csv_io as csvio
+
 
 
 #GET /wines
@@ -295,3 +299,98 @@ def get_country(id):
         "name": country.name
     }
     return jsonify(result), 200
+
+
+@app.route("/csv", methods=["GET"])
+def download_csv():
+    """Download all wine data as CSV.
+
+    Returns:
+        CSV file response with HTTP 200.
+        Each row includes wine, producer, region, and country details.
+    """
+
+    wines = (db.session.query(
+        Wine.id,
+        Wine.name,
+        Wine.vintage,
+        Wine.varietal,
+        Wine.color,
+        Wine.type,
+        Wine.rating,
+        Wine.quantity,
+        Producer.name,
+        Region.name,
+        Country.name
+    ).select_from(Wine)
+    .join(Producer, Wine.producer_id == Producer.id)
+    .join(Region, Producer.region_id == Region.id)
+    .join(Country, Region.country_id == Country.id)
+    .all())
+
+
+    dataframe = pd.DataFrame(wines, columns=csvio.CSV_HEADERS)
+    csv_data = dataframe.to_csv(index=False)
+
+    return Response(
+        csv_data,
+        mimetype="text/csv",
+        headers={"Content-Disposition": "attachment; filename=wines.csv"},
+        status=200
+    )
+
+@app.route("/csv", methods=["POST"])
+def upload_csv():
+    """Upload and replace wine database from CSV file.
+
+    Expects a multipart/form-data request with a '.csv' file named 'file'.
+    Validates headers, clears existing data, and inserts new countries, regions,
+    producers, and wines in dependency order.
+
+    Returns:
+        JSON response with confirmation message and HTTP 200.
+        HTTP 400 on invalid or missing file.
+    """
+
+    #check if file is in request
+    if "file" not in request.files:
+        return jsonify({"error": "No file in request"}), 400
+    
+    #get file from request
+    file = request.files["file"]
+
+    #validate extension
+    if not file.filename.lower().endswith(".csv"):
+        return jsonify({"error": "Invalid file type"}), 400
+    
+    #read to dataframe
+    try:
+        df = pd.read_csv(file)
+    except Exception as e:
+        return jsonify({"error": "Failed to parse file"}), 400
+
+    #validate headers
+    if list(df.columns) != csvio.CSV_HEADERS:
+        return jsonify({"error": "Invalid CSV headers"}), 400
+    
+    #convert to dict
+    rows = df.to_dict(orient="records")
+
+    #wipe db
+    csvio.clear_database()
+
+    #insert each distinct country and map ids to names
+    country_map = csvio.insert_countries(rows)
+
+    #insert each distinct region and map ids to names
+    region_map = csvio.insert_regions(rows, country_map)
+
+    #insert each distinct producer and map ids to names
+    producer_map = csvio.insert_producers(rows, region_map)
+
+    #insert all wines
+    csvio.insert_wines(rows, producer_map)
+    
+    db.session.commit()
+    
+    return jsonify(message="File uploaded successfully"), 200
