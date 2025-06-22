@@ -13,7 +13,9 @@ Python-based backend using MySQL and web scraping; React frontend planned.
 - [X] Unit test for API endpoints, data validation, and scraper functions   
 - [X] Implement CSV import and export functionality
 - [ ] Provide data visualization for inventory
+- [ ] Add daily MySQL backup script with timestamps and cleanup
 - [ ] Containerize the application (Docker & Docker Compose)
+
 
 ## Technologies Used
 - **Flask** – backend REST API
