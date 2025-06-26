@@ -7,7 +7,7 @@ Python-based backend using MySQL and web scraping; React frontend planned.
 - [X] Create REST API to manage wine entries  
 - [X] Store wines in a relational database with fields including quantity, producer, and rating
 - [X] Use SQLite for local development
-- [ ] Use MySQL in production
+- [X] Use MySQL in production
 - [X] Use a Python scraper to find tasting notes and rating
 - [X] Support listing, updating, and deleting entries
 - [X] Unit test for API endpoints, data validation, and scraper functions   
