@@ -10,8 +10,9 @@ Python-based backend using MySQL and web scraping; React frontend planned.
 - [X] Use MySQL in production
 - [X] Use a Python scraper to find tasting notes and rating
 - [X] Support listing, updating, and deleting entries
-- [X] Unit test for API endpoints, data validation, and scraper functions   
 - [X] Implement CSV import and export functionality
+- [X] Unit test for API endpoints, data validation, and scraper functions
+- [X] Add interactive API documentation using Swagger UI
 - [ ] Provide data visualization for inventory
 - [ ] Add daily MySQL backup script with timestamps and cleanup
 - [ ] Containerize the application (Docker & Docker Compose)
@@ -25,6 +26,7 @@ Python-based backend using MySQL and web scraping; React frontend planned.
 - **unittest.mock** – mocking external calls in tests
 - **BeautifulSoup** – HTML parsing for web scraping
 - **Pandas** –  DataFrame operations for CSV I/O
+- **Flasgger** – Swagger UI for API documentation
 <br><br>
 ***
 

@@ -21,10 +21,35 @@ import csv_io.csv_io as csvio
 #GET /wines
 @app.route("/wines", methods=["GET"])
 def get_wines():
-    """Retrieve all wine entries.
-
-    Returns:
-        JSON response with a list of all wines and HTTP 200.
+    """
+    Retrieve all wine entries
+    ---
+    responses:
+      200:
+        description: A list of wines
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              quantity:
+                type: integer
+              name:
+                type: string
+              vintage:
+                type: integer
+              varietal:
+                type: string
+              color:
+                type: string
+              type:
+                type: string
+              producer_id:
+                type: integer
+              rating:
+                type: number
     """
 
     wines = Wine.query.all()
@@ -44,14 +69,41 @@ def get_wines():
 
 @app.route("/wines/<int:id>", methods=["GET"])
 def get_wine(id):
-    """Retrieve a single wine by ID.
-
-    Args:
-        id (int): Wine ID.
-
-    Returns:
-        JSON response with wine data and HTTP 200
-        HTTP 404 if not found
+    """
+    Retrieve a single wine by ID
+    ---
+    parameters:
+      - name: id
+        in: path
+        type: integer
+        required: true
+        description: ID of the wine
+    responses:
+      200:
+        description: Wine data
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+            quantity:
+              type: integer
+            name:
+              type: string
+            vintage:
+              type: integer
+            varietal:
+              type: string
+            color:
+              type: string
+            type:
+              type: string
+            producer_id:
+              type: integer
+            rating:
+              type: number
+      404:
+        description: Wine not found
     """
 
     wine = Wine.query.get_or_404(id)
@@ -71,14 +123,50 @@ def get_wine(id):
 
 @app.route("/wines", methods=["POST"])
 def add_wine():
-    """Create a new wine entry.
-
-    Parses JSON request, validates fields, checks for duplicates,
-    scrapes rating, and inserts the wine.
-
-    Returns:
-        JSON response with new wine ID and HTTP 201 on success.
-        HTTP 400 or 409 on error.
+    """
+    Create a new wine entry
+    ---
+    consumes:
+      - application/json
+    parameters:
+      - in: body
+        name: wine
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            vintage:
+              type: integer
+            producer_id:
+              type: integer
+            quantity:
+              type: integer
+            varietal:
+              type: string
+            color:
+              type: string
+            type:
+              type: string
+    responses:
+      201:
+        description: Wine created
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+            message:
+              type: string
+        headers:
+          Location:
+            type: string
+            description: URL of the new wine
+      400:
+        description: Validation error
+      409:
+        description: Duplicate entry
     """
 
     #get request
@@ -137,18 +225,44 @@ def add_wine():
     db.session.add(wine)
     db.session.commit()
     
-    return jsonify({"id": wine.id, "message": "Wine added successfully"}), 201
+    response = jsonify({"id": wine.id, "message": "Wine added successfully"})
+    response.status_code = 201
+    response.headers["Location"] = f"/wines/{wine.id}"
+    return response
 
 
 @app.route("/wines", methods=["PUT"])
 def update_quantity():
-    """Update quantity of an existing wine.
-
-    Parses JSON request and updates the quantity for the given wine ID.
-
-    Returns:
-        JSON response with confirmation message and HTTP 200.
-        HTTP 400 or 404 on error.
+    """
+    Update quantity of an existing wine
+    ---
+    consumes:
+      - application/json
+    parameters:
+      - in: body
+        name: wine
+        required: true
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: ID of the wine
+            quantity:
+              type: integer
+              description: New quantity value
+    responses:
+      200:
+        description: Quantity updated
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+      400:
+        description: Validation error or missing ID
+      404:
+        description: Wine not found
     """
 
     #check for id
@@ -173,14 +287,25 @@ def update_quantity():
 
 @app.route("/wines/<int:id>", methods=["DELETE"])
 def remove_wine(id):
-    """Delete a wine entry by ID.
-
-    Args:
-        id (int): Wine ID.
-
-    Returns:
-        JSON response confirming deletion and HTTP 200.
-        HTTP 404 if not found.
+    """
+    Delete a wine entry by ID
+    ---
+    parameters:
+      - name: id
+        in: path
+        type: integer
+        required: true
+        description: ID of the wine to delete
+    responses:
+      200:
+        description: Deletion confirmed
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+      404:
+        description: Wine not found
     """
 
     wine = Wine.query.get_or_404(id)
@@ -191,10 +316,23 @@ def remove_wine(id):
 
 @app.route("/producers", methods=["GET"])
 def get_producers():
-    """Retrieve all producers.
-
-    Returns:
-        JSON response with a list of all producers and HTTP 200.
+    """
+    Retrieve all producers
+    ---
+    responses:
+      200:
+        description: A list of producers
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              region_id:
+                type: integer
     """
 
     producers = Producer.query.all()
@@ -208,14 +346,29 @@ def get_producers():
 
 @app.route("/producers/<int:id>", methods=["GET"])
 def get_producer(id):
-    """Retrieve a single producer by ID.
-
-    Args:
-        id (int): Producer ID.
-
-    Returns:
-        JSON response with producer data and HTTP 200.
-        HTTP 404 if not found.
+    """
+    Retrieve a single producer by ID
+    ---
+    parameters:
+      - name: id
+        in: path
+        type: integer
+        required: true
+        description: ID of the producer
+    responses:
+      200:
+        description: Producer data
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            region_id:
+              type: integer
+      404:
+        description: Producer not found
     """
 
     producer = Producer.query.get_or_404(id)
@@ -229,10 +382,23 @@ def get_producer(id):
 
 @app.route("/regions", methods=["GET"])
 def get_regions():
-    """Retrieve all regions.
-
-    Returns:
-        JSON response with a list of all regions and HTTP 200.
+    """
+    Retrieve all regions
+    ---
+    responses:
+      200:
+        description: A list of regions
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              country_id:
+                type: integer
     """
 
     regions = Region.query.all()
@@ -246,14 +412,29 @@ def get_regions():
 
 @app.route("/regions/<int:id>", methods=["GET"])
 def get_region(id):
-    """Retrieve a single region by ID.
-
-    Args:
-        id (int): Region ID.
-
-    Returns:
-        JSON response with region data and HTTP 200.
-        HTTP 404 if not found.
+    """
+    Retrieve a single region by ID
+    ---
+    parameters:
+      - name: id
+        in: path
+        type: integer
+        required: true
+        description: ID of the region
+    responses:
+      200:
+        description: Region data
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            country_id:
+              type: integer
+      404:
+        description: Region not found
     """
 
     region = Region.query.get_or_404(id)
@@ -267,10 +448,21 @@ def get_region(id):
 
 @app.route("/countries", methods=["GET"])
 def get_countries():
-    """Retrieve all countries.
-
-    Returns:
-        JSON response with a list of all countries and HTTP 200.
+    """
+    Retrieve all countries
+    ---
+    responses:
+      200:
+        description: A list of countries
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
     """
 
     countries = Country.query.all()
@@ -283,14 +475,27 @@ def get_countries():
 
 @app.route("/countries/<int:id>", methods=["GET"])
 def get_country(id):
-    """Retrieve a single country by ID.
-
-    Args:
-        id (int): Country ID.
-
-    Returns:
-        JSON response with country data and HTTP 200.
-        HTTP 404 if not found.
+    """
+    Retrieve a single country by ID
+    ---
+    parameters:
+      - name: id
+        in: path
+        type: integer
+        required: true
+        description: ID of the country
+    responses:
+      200:
+        description: Country data
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+      404:
+        description: Country not found
     """
 
     country = Country.query.get_or_404(id)
@@ -303,11 +508,18 @@ def get_country(id):
 
 @app.route("/csv", methods=["GET"])
 def download_csv():
-    """Download all wine data as CSV.
-
-    Returns:
-        CSV file response with HTTP 200.
-        Each row includes wine, producer, region, and country details.
+    """
+    Download all wine data as CSV
+    ---
+    produces:
+      - text/csv
+    responses:
+      200:
+        description: CSV file containing wine data
+        headers:
+          Content-Disposition:
+            type: string
+            description: Attachment header with filename
     """
 
     wines = (db.session.query(
@@ -341,15 +553,27 @@ def download_csv():
 
 @app.route("/csv", methods=["POST"])
 def upload_csv():
-    """Upload and replace wine database from CSV file.
-
-    Expects a multipart/form-data request with a '.csv' file named 'file'.
-    Validates headers, clears existing data, and inserts new countries, regions,
-    producers, and wines in dependency order.
-
-    Returns:
-        JSON response with confirmation message and HTTP 200.
-        HTTP 400 on invalid or missing file.
+    """
+    Upload and replace wine database from CSV file
+    ---
+    consumes:
+      - multipart/form-data
+    parameters:
+      - name: file
+        in: formData
+        type: file
+        required: true
+        description: CSV file containing wine data
+    responses:
+      200:
+        description: File uploaded and database replaced
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+      400:
+        description: Invalid or missing file
     """
 
     #check if file is in request

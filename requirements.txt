@@ -1,4 +1,5 @@
 Flask
 Flask-SQLAlchemy
-SQLAlchemy<2.0
+flasgger
 pycountry
+SQLAlchemy<2.0
