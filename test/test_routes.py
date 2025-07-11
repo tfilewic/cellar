@@ -34,6 +34,19 @@ def test_add_wine_201(client, data):
     response = client.post("/wines", json=payload)
     assert response.status_code == 201
 
+def test_add_wine_creates_country_region_producer_201(client):
+    payload = {
+        "name": "Castillo Ygay Gran Reserva",
+        "vintage": 2011,
+        "producer_name": "Marqués de Murrieta",
+        "region_name": "Rioja",
+        "country_name": "Spain"
+    }
+    response = client.post("/wines", json=payload)
+    assert response.status_code == 201
+    assert "id" in response.json
+
+
 def test_add_wine_400(client, data):
     payload = {
         "name": data["wine"].name,

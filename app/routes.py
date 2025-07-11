@@ -124,7 +124,16 @@ def get_wine(id):
 @app.route("/wines", methods=["POST"])
 def add_wine():
     """
-    Create a new wine entry
+    Create a new wine entry.
+
+    If producer_id is not provided, the API will attempt to build the producer from flat data:
+    - If producer_id is missing:
+        - Use producer_name + region_id to find or create the producer.
+        - If region_id is missing:
+            - Use region_name + country_id to find or create the region.
+            - If country_id is missing:
+                - Use country_name to find or create the country.
+
     ---
     consumes:
       - application/json
@@ -139,8 +148,6 @@ def add_wine():
               type: string
             vintage:
               type: integer
-            producer_id:
-              type: integer
             quantity:
               type: integer
             varietal:
@@ -148,6 +155,21 @@ def add_wine():
             color:
               type: string
             type:
+              type: string
+
+            producer_id:
+              type: integer
+            producer_name:
+              type: string
+
+            region_id:
+              type: integer
+            region_name:
+              type: string
+
+            country_id:
+              type: integer
+            country_name:
               type: string
     responses:
       201:
@@ -174,16 +196,53 @@ def add_wine():
 
     #validate required fields
     try:
-        name = Wine.validate_name(data.get("name"))
-        vintage = Wine.validate_vintage(data.get("vintage"))
-        producer_id = Wine.validate_producer_id(data.get("producer_id"))
+      name = Wine.validate_name(data.get("name"))
+      vintage = Wine.validate_vintage(data.get("vintage"))
 
-        #get producer name
-        producer = Producer.query.get(producer_id)
+      #resolve producer id
+      producer_id = data.get("producer_id")
+      if not producer_id:
+        #resolve region id
+        region_id = data.get("region_id")
+        if not region_id: 
+          #resolve country id
+          country_id = data.get("country_id")
+          if not country_id:
+            #find or create country
+            country_name = Country.validate_name(data.get("country_name"))
+            country = Country.query.filter_by(name=country_name).first()
+            if not country:
+              country = Country(name=country_name)
+              db.session.add(country)
+              db.session.flush()
+            country_id = country.id
+          Region.validate_country_id(country_id)
+          #find or create region
+          region_name = Region.validate_name(data.get("region_name"))
+          region = Region.query.filter_by(name=region_name, country_id=country_id).first()
+          if not region:
+            region = Region(name=region_name, country_id=country_id)
+            db.session.add(region)
+            db.session.flush()
+          region_id = region.id
+        Producer.validate_region_id(region_id)
+        #find or create producer
+        producer_name = Producer.validate_name(data.get("producer_name"))
+        producer = Producer.query.filter_by(name=producer_name, region_id=region_id).first()
         if not producer:
-            raise ValueError("Producer not found")
+          producer = Producer(name=producer_name, region_id=region_id)
+          db.session.add(producer)
+          db.session.flush()
+        producer_id = producer.id  
+      Wine.validate_producer_id(producer_id)
+
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
+
+    #check if producer exists
+    producer = Producer.query.get(producer_id)
+    if not producer:
+        return jsonify({"error": "Producer not found"}), 400
 
     #check if duplicate
     existing = Wine.query.filter_by(
@@ -194,20 +253,21 @@ def add_wine():
     if existing:
         return jsonify({"error": "Duplicate Entry"}), 409
     
+
     #build entry
     try:
         quantity = data.get("quantity")
         if quantity is not None:
-            quantity = Wine.validate_quantity(quantity)
+          quantity = Wine.validate_quantity(quantity)
         varietal = data.get("varietal")
         if varietal is not None:
-            varietal = Wine.validate_varietal(varietal)
+          varietal = Wine.validate_varietal(varietal)
         color = data.get("color")
         if color is not None:
-            color = Wine.validate_color(color)
+          color = Wine.validate_color(color)
         wine_type = data.get("type")
         if wine_type is not None:
-            wine_type = Wine.validate_type(wine_type)
+          wine_type = Wine.validate_type(wine_type)
         rating = scrape_rating(name, vintage, producer.name)
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
