@@ -3,3 +3,8 @@ Flask-SQLAlchemy
 flasgger
 pycountry
 SQLAlchemy<2.0
+pymysql
+requests
+beautifulsoup4
+pandas
+cryptography

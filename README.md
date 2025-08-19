@@ -15,7 +15,7 @@ Python-based backend using MySQL and web scraping; React frontend planned.
 - [X] Add interactive API documentation using Swagger UI
 - [ ] Provide data visualization for inventory
 - [ ] Add daily MySQL backup script with timestamps and cleanup
-- [ ] Containerize the application (Docker & Docker Compose)
+- [X] Containerize the application (Docker & Docker Compose)
 
 
 ## Technologies Used
@@ -27,6 +27,7 @@ Python-based backend using MySQL and web scraping; React frontend planned.
 - **BeautifulSoup** – HTML parsing for web scraping
 - **Pandas** –  DataFrame operations for CSV I/O
 - **Flasgger** – Swagger UI for API documentation
+- **Docker** – containerization of backend and database services  
 <br><br>
 ***
 
